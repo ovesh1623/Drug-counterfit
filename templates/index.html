@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Error 405</title>
+	<meta charset="UTF-8">
+	<script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js">
+	</script>
+	<script type="text/javascript">
+		function openQRCamera(node) {
+	  var reader = new FileReader();
+	  reader.onload = function() {
+	    node.value = "";
+	    qrcode.callback = function(res) {
+	      if(res instanceof Error) {
+	        alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
+	      } else {
+	        node.parentNode.previousElementSibling.value = res;
+	      }
+	    };
+	    qrcode.decode(reader.result);
+	  };
+	  reader.readAsDataURL(node.files[0]);
+	}
+
+	</script>
+	<style type="text/css">
+	.qrcode-text-btn {
+	  display: inline-block;
+	  height: 1em;
+	  width: 1em;
+	  background: url('static/images/qr_icon.svg') 50% 50% no-repeat;
+	  cursor: pointer;
+	}
+
+	.qrcode-text-btn > input[type=file] {
+	  position: absolute;
+	  overflow: hidden;
+	  width: 1px;
+	  height: 1px;
+	  opacity: 0;
+	}
+	.qrcode-text {
+	  padding-right: 1.7em;
+	  margin-right: 0;
+	  vertical-align: middle;
+	}
+
+	.qrcode-text + .qrcode-text-btn {
+	  width: 1.7em;
+	  margin-left: -1.7em;
+	  vertical-align: middle;
+	}
+	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="static/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/assets/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/assets/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/assets/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" href="static/assets/css/util.css">
+	<link rel="stylesheet" href="static/assets/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+
+	<div class="contact1">
+		<div class="container-contact1">
+			<div class="contact1-pic js-tilt" data-tilt>
+				<img src="static/images/img-01.png" alt="IMG">
+			</div>
+
+			<form class="contact1-form validate-form" method="post" action="/mine_block">
+				<span class="contact1-form-title">Verify QR</span>
+				<input type=text class="qrcode-text input1" name="pid" required placeholder="Submit your QR">
+				<label class=qrcode-text-btn>
+				<input type = file
+				class="wrap-input1 validate-input"
+        capture=environment
+        onchange="openQRCamera(this);"
+				tabindex=-1>
+				</label>
+
+				<div class="wrap-input1 validate-input" data-validate = "Name is required">
+					<input class="input1" type="text" name="send" placeholder="Senders Name" required>
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<input class="input1" type="text" name="receive" placeholder="Receivers Name" required>
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="wrap-input1 validate-input" data-validate = "Subject is required">
+					<input class="input1" type="text" name="quant" placeholder="Quantity" required>
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="container-contact1-form-btn">
+					<input type="submit" class="contact1-form-btn" value="Purchase">
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+
+<!--===============================================================================================-->
+	<script src="static/assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/assets/vendor/bootstrap/js/popper.js"></script>
+	<script src="static/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/assets/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="static/assets/vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+<!--===============================================================================================-->
+	<script src="static/assets/js/main.js"></script>
+
+</body>
+</html>
